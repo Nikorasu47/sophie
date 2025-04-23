@@ -79,6 +79,14 @@ h1 > span {
 ;
 }
 
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	color: #B1663C;
+}
+
 h2{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -99,6 +107,7 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -206,9 +215,29 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+.login-message{
+	color: red;
+	display: none;
+	margin-bottom: 10px;
+	
+}
+
+.mdp{
+	text-align: center;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+footer{
+	background-color: white;
+	height: 50px;
+}
+
 footer nav ul {
 	display: flex;
+	padding-top: 15px;
 	justify-content: flex-end;
 	margin: 2em
 }
+
 
