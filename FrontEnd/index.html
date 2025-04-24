@@ -10,17 +10,26 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    
+    <script src="https://kit.fontawesome.com/ad784c2ec6.js" crossorigin="anonymous"></script>
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
+           <!-- Bannière  admin -->
+  <div id="admin-banner">
+    <i class="fa-solid fa-pen-to-square"></i>
+    Mode Édition 
+  </div>
+  <!--fin rajout admin-->
     <header>
+ 
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
           <li><a href="#portfolio">Projets</a></li>
           <li><a href="#contact">contact</a></li>
-          <li><a href="login.html">login</a></li>
+          <li><a href="login.html" id="log">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -50,7 +59,28 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div>
+          <h2>Mes Projets</h2>
+               <!-- bouton modifier -->
+          <a href="#modalModif" id="modif">      
+            <p >
+              
+              <i class="fa-solid fa-pen-to-square"></i>
+              modifier
+            </p>
+          </a>
+          <aside id="modalModif" class=" modal" style="display: none;">
+            <div class="modal-wrapper">
+              <h2 id="titleModal">Gallerie Photo</h2>
+              <span class="close"><i class="fa-solid fa-xmark"></i></span>
+              <div id="works-modif"></div>
+              <input class="addPicture" type="submit" value="Ajouter une photo" />
+
+            </div>
+
+          </aside>
+        </div>
+           <!--fin rajout admin-->
         <div class="tri"></div>
         <div class="gallery"></div>
       </section>
@@ -78,5 +108,6 @@
     </footer>
     <script src="assets/scripts/categories.js"></script>
     <script src="assets/scripts/galerie.js"></script>
+    <script src="assets/scripts/scripts.js"></script>
   </body>
 </html>

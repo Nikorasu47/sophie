@@ -1,45 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const messageElement = document.getElementById("login-message");
+  const token = localStorage.getItem("token");
+  const adminBanner = document.getElementById("admin-banner");
+  const logLink = document.getElementById("log");
+  const modif = document.getElementById("modif");
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
+  if (token) {
+    // Affiche la bannière admin
+    adminBanner.style.display = "block";
+    logLink.textContent = "logout";
+    modif.style.display = "block";
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
+    // Gère la déconnexion
 
-    // Réinitialise le message
-    messageElement.style.display = "none";
-    messageElement.textContent = "";
+    logLink.addEventListener("click", () => {
+      //retire le "statut connecter"(token)
+      localStorage.removeItem("token");
+      // recharge la page en mode "non connecté"
+      window.location.reload();
+    });
+  }
+});
 
-    // Vérification simple
-    if (!email && !password) {
-      afficherMessage("Veuillez remplir tous les champs.");
-      return;
-    }
-    if (!email || !password) {
-      afficherMessage("Veuillez remplir le champ manquant.");
-      return;
-    }
+const modifierOpen = document.getElementById("modif");
 
-    // Vérifie compatibilité
-    const emailAttendu = window.localStorage.setItem("user", "SophieBuel@gmail.com");
-    const passwordAttendu = window.localStorage.setItem("mot de passe", "123456789");
+modifierOpen.addEventListener("click", () => {
+  const modalePopup = document.getElementById("modalModif");
+  modalePopup.style.display = "block";
 
-    if (email === emailAttendu && password === passwordAttendu) {
-     
-      // Redirection menu de modif
-      // window.location.href = "admin.html";
-    } else {
-      afficherMessage("Identifiants incorrects !");
-    }
-  });
+  const modifBtn = document.getElementById("modif");
 
-  function afficherMessage(texte) {
-    messageElement.textContent = texte;
-    messageElement.style.display = "block";
-    messageElement.style.color = "red";
+  const closeModal = document.querySelector(".close");
+  const worksListContainer = document.getElementById("works-modif");
+
+  fetch("http://localhost:5678/api/works")
+    .then((res) => res.json())
+    .then((works) => {
+      travauxExistant = works;
+      displayWorksInModal();
+    });
+
+  function displayWorksInModal() {
+    worksListContainer.innerHTML = "";
+
+    travauxExistant.forEach((work) => {
+      const item = document.createElement("div");
+
+      item.innerHTML = `
+        <div class="work-item">
+          <img src="${work.imageUrl}" alt="${work.title}">
+           <button class="delete-btn" data-id="${work.id}"><i class="fa-solid fa-trash "></i></button>
+        </div>
+       
+      `;
+
+      worksListContainer.appendChild(item);
+    });
   }
 });
