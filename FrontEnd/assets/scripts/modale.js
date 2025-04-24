@@ -40,6 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
         displayWorksInModal();
       });
   
+    closeModal.addEventListener("click", () => {
+        modaleOpen.style.display = "none";
+      });
+  
+    window.addEventListener("click", (e) => {
+        if (e.target === modaleOpen) {
+          modaleOpen.style.display = "none";
+        }
+      });
     
   
   
