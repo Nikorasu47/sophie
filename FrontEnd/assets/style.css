@@ -268,9 +268,14 @@ footer nav ul {
 	color:black;
 	font-size: 10px;
 
-	position: absolute;
-	right:30%;
-	top:505px;
+	position: relative;
+	padding: 15px 0px 0px 25px;	
+}
+
+.project-modif {
+display: flex;
+flex-direction: row;
+justify-content: center;
 }
 
 /**modale de modification gallerie**/
@@ -284,7 +289,7 @@ footer nav ul {
 	height: 100vh;
 	background: rgba(0, 0, 0, 0.6);
 
-	display: flex;
+	
 	align-items: center;
 	justify-content: center;
 	z-index: 999;
@@ -334,7 +339,7 @@ footer nav ul {
 	padding-bottom: 20px;
 	border-bottom: 1px solid grey;
 	display: flex;
-	justify-content: space-between;
+	
 	flex-wrap: wrap;
 	flex-direction: row;
 
@@ -347,6 +352,7 @@ footer nav ul {
 	padding: 5px;	
 	position: relative;
 	height: 100px;
+	
 	
 }	
   
@@ -376,6 +382,142 @@ footer nav ul {
 
 }
 
-.addPicture{
+.addPictureButton{
 	padding: 6px 20px;
+}
+/** modle change for add picture**/
+
+#add-picture{
+	width: 45%;
+	height: 55%;
+	padding: 50px;
+	background-color: white;
+	overflow: auto;
+	
+	border-radius: 10px;
+
+	position: fixed;
+	right: 23vw;
+	top: 18vh;
+
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	
+
+}
+
+.picture{
+	width: 90%;
+	height: 70% ;
+
+	display: flex;
+
+	justify-content: center;
+	background-color: #E8F1F6;
+}
+
+.div-pict{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
+	height: 100%;
+	width: 100%;
+	color: #E8F1F6;
+	background-color: #E8F1F6;
+	padding: 5px;
+}
+
+.picture input{
+	background-color: #CBD6DC;
+	color: #306685;
+	padding: 10px;
+}
+.picture p{
+	font-size: 10px;
+	font-weight: 400;
+	color: #444444;
+	text-align: center;
+}
+
+.picture i{
+	color: #B9C5CC;
+	font-size: 70px;
+	text-align: center;
+}
+.picture img{
+	align-self: center;
+	width: 50%;
+	height: 100%;
+
+}
+
+#labels{
+	width: 90%;
+	
+
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 15px;
+}
+
+#title,#category{
+	width: 100%;
+
+	box-shadow: 0px 4px 14px 0px #00000017;
+
+	height: 30px;
+
+}
+
+.fa-arrow-left{
+	color: black;
+	font-size: 20px;
+	position: absolute;
+	top : 20px;
+	left : 20px;
+
+	cursor: pointer;
+}
+.div-category{
+	position: relative;
+}
+
+.fa-chevron-down{
+	position: absolute;
+	right: 10px;
+	top: 25px;
+	cursor: pointer;
+}
+
+.dropdown-categories{
+	display: flex;
+	flex-direction: column;
+	
+	font-family: 'Syne';
+		
+	background-color: white;
+	padding : 4px ;
+	gap: 5px;
+	width: 100%;
+	text-align: left;
+	border: 1px solid black;
+		
+	cursor: pointer;
+}
+
+#add-button{
+	background-color: #A7A7A7;
+	padding: 10px;
+}
+
+#error-message {
+	color: red;
+	font-size: 14px;
+	display: none;
+	margin-top: 10px;
 }

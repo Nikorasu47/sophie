@@ -10,20 +10,22 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
-    
-    <script src="https://kit.fontawesome.com/ad784c2ec6.js" crossorigin="anonymous"></script>
+
+    <script
+      src="https://kit.fontawesome.com/ad784c2ec6.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-           <!-- Bannière  admin -->
-  <div id="admin-banner">
-    <i class="fa-solid fa-pen-to-square"></i>
-    Mode Édition 
-  </div>
-  <!--fin rajout admin-->
+    <!-- Bannière  admin -->
+    <div id="admin-banner">
+      <i class="fa-solid fa-pen-to-square"></i>
+      Mode Édition
+    </div>
+    <!--fin rajout admin-->
     <header>
- 
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
@@ -59,28 +61,55 @@
         </article>
       </section>
       <section id="portfolio">
-        <div>
+        <div class="project-modif">
           <h2>Mes Projets</h2>
-               <!-- bouton modifier -->
-          <a href="#modalModif" id="modif">      
-            <p >
-              
+          <!-- bouton modifier -->
+          <a href="#modalModif" id="modif">
+            <p>
               <i class="fa-solid fa-pen-to-square"></i>
               modifier
             </p>
           </a>
-          <aside id="modalModif" class=" modal" style="display: none;">
+          <aside id="modalModif" class="modal" style="display: none">
             <div class="modal-wrapper">
+              
               <h2 id="titleModal">Gallerie Photo</h2>
               <span class="close"><i class="fa-solid fa-xmark"></i></span>
               <div id="works-modif"></div>
-              <input class="addPicture" type="submit" value="Ajouter une photo" />
-
+              <input
+                class="addPictureButton"
+                type="submit"
+                value="Ajouter une photo"
+              />
             </div>
-
+            <div id="add-picture">
+              <i class="fa-solid fa-arrow-left" id="returnModal"></i>
+              <h2 id="titleModal">Ajout photo</h2>
+              <div class="picture">
+                <img src="" alt="preview" style="display: none;" id="img-picture" >
+                <div class="div-pict">
+                  <i class="fa-solid fa-image"></i>
+                  <input type="file" style="display: none;" id="trigger-file" required/>
+                  <input type="submit" value="+ Ajouter photo" id="trigger-button" />
+                  <p>jpg. png : 4mo max</p>
+                </div>
+              </div>
+              <div id = "labels">
+                <label for="text">Titre</label>
+                
+                <input type="text" name="title" id="title" required/>
+                <div class="div-category">
+                  <label for="list">Categorie </label>
+                  <input type="text" name="dropdown-categories" id="category" required/>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <input  type="submit" value="Valider" id="add-button"/>
+                <p id="error-message"></p>
+              </div>
+            </div>
           </aside>
         </div>
-           <!--fin rajout admin-->
+        <!--fin rajout modif-->
         <div class="tri"></div>
         <div class="gallery"></div>
       </section>
@@ -94,7 +123,7 @@
           <input type="email" name="email" id="email" />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+          <input type="submit" value="Envoyer"  />
         </form>
       </section>
     </main>
@@ -108,6 +137,8 @@
     </footer>
     <script src="assets/scripts/categories.js"></script>
     <script src="assets/scripts/galerie.js"></script>
+    <script src="assets/scripts/modale.js"></script>
+    <script src="assets/scripts/comportementadd.js"></script>
     <script src="assets/scripts/scripts.js"></script>
   </body>
 </html>

@@ -1,59 +1,56 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const token = localStorage.getItem("token");
-  const adminBanner = document.getElementById("admin-banner");
-  const logLink = document.getElementById("log");
-  const modif = document.getElementById("modif");
+const addToBackend = document.getElementById("add-button")
+const errorMessage = document.getElementById("error-message")
+const titleInput = document.getElementById("title");
 
-  if (token) {
-    // Affiche la bannière admin
-    adminBanner.style.display = "block";
-    logLink.textContent = "logout";
-    modif.style.display = "block";
 
-    // Gère la déconnexion
+addToBackend.addEventListener("click", (e) => {
+  e.preventDefault(); // évite le rechargement
 
-    logLink.addEventListener("click", () => {
-      //retire le "statut connecter"(token)
-      localStorage.removeItem("token");
-      // recharge la page en mode "non connecté"
-      window.location.reload();
-    });
+  errorMessage.style.display = "none";
+  errorMessage.textContent = "";
+
+  // Vérifie que tous les champs sont remplis
+  if (!titleInput.value.trim() || !categoryInput.value.trim() || openFile.files.length === 0) {
+    errorMessage.textContent = "Veuillez remplir tous les champs et ajouter une image.";
+    errorMessage.style.display = "block";
+    return;
   }
-});
 
-const modifierOpen = document.getElementById("modif");
+  // Crée le FormData
+  const formData = new FormData();
+  formData.append("image", openFile.files[0]);
+  formData.append("title", titleInput.value.trim());
+  formData.append("category", categoryInput.value.trim());
 
-modifierOpen.addEventListener("click", () => {
-  const modalePopup = document.getElementById("modalModif");
-  modalePopup.style.display = "block";
+  // Envoi du formulaire
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        // Reset des champs après succès
+        titleInput.value = "";
+        categoryInput.value = "";
+        openFile.value = "";
+        picture.innerHTML = `<i class="fa-solid fa-image"></i>`; // Remettre l'icône image
 
-  const modifBtn = document.getElementById("modif");
+        errorMessage.style.color = "green";
+        errorMessage.textContent = "Travail ajouté avec succès !";
+        errorMessage.style.display = "block";
 
-  const closeModal = document.querySelector(".close");
-  const worksListContainer = document.getElementById("works-modif");
-
-  fetch("http://localhost:5678/api/works")
-    .then((res) => res.json())
-    .then((works) => {
-      travauxExistant = works;
-      displayWorksInModal();
+        
+      } else {
+        errorMessage.textContent = "Erreur lors de l'ajout du travail.";
+        errorMessage.style.display = "block";
+      }
+    })
+    .catch((error) => {
+      console.error("Erreur réseau :", error);
+      errorMessage.textContent = "Erreur réseau, veuillez réessayer.";
+      errorMessage.style.display = "block";
     });
-
-  function displayWorksInModal() {
-    worksListContainer.innerHTML = "";
-
-    travauxExistant.forEach((work) => {
-      const item = document.createElement("div");
-
-      item.innerHTML = `
-        <div class="work-item">
-          <img src="${work.imageUrl}" alt="${work.title}">
-           <button class="delete-btn" data-id="${work.id}"><i class="fa-solid fa-trash "></i></button>
-        </div>
-       
-      `;
-
-      worksListContainer.appendChild(item);
-    });
-  }
 });
