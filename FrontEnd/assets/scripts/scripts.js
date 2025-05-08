@@ -1,11 +1,12 @@
 const addToBackend = document.getElementById("add-button")
 const errorMessage = document.getElementById("error-message")
 const titleInput = document.getElementById("title");
+const picture = document.getElementById("picture");
 
 
 
 function checkFormValidity() {
-  const isFormValid = titleInput.value.trim() !== "" && categoryInput.value() !== "" && openFile.files.length > 0;
+  const isFormValid = titleInput.value.trim() !== "" && categoryInput.value !== "" && openFile.files.length > 0;
   addToBackend.disabled = !isFormValid;
   addToBackend.classList.toggle("disabled-btn", !isFormValid);
 }
