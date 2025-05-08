@@ -3,24 +3,35 @@ const errorMessage = document.getElementById("error-message")
 const titleInput = document.getElementById("title");
 
 
+
+function checkFormValidity() {
+  const isFormValid = titleInput.value.trim() !== "" && categoryInput.value() !== "" && openFile.files.length > 0;
+  addToBackend.disabled = !isFormValid;
+  addToBackend.classList.toggle("disabled-btn", !isFormValid);
+}
+
+// verif changements de chaque champ
+titleInput.addEventListener("input", checkFormValidity);
+categoryInput.addEventListener("input", checkFormValidity);
+openFile.addEventListener("change", checkFormValidity);
+
+// Appel initial
+
+checkFormValidity();
+
+
 addToBackend.addEventListener("click", (e) => {
   e.preventDefault(); // évite le rechargement
-
+  
   errorMessage.style.display = "none";
   errorMessage.textContent = "";
 
-  // Vérifie que tous les champs sont remplis
-  if (!titleInput.value.trim() || !categoryInput.value.trim() || openFile.files.length === 0) {
-    errorMessage.textContent = "Veuillez remplir tous les champs et ajouter une image.";
-    errorMessage.style.display = "block";
-    return;
-  }
-
-  // Crée le FormData
+ 
+  // Crée la demande
   const formData = new FormData();
   formData.append("image", openFile.files[0]);
   formData.append("title", titleInput.value.trim());
-  formData.append("category", categoryInput.value.trim());
+  formData.append("category", categoryInput.value);
 
   // Envoi du formulaire
   fetch("http://localhost:5678/api/works", {
@@ -54,3 +65,5 @@ addToBackend.addEventListener("click", (e) => {
       errorMessage.style.display = "block";
     });
 });
+
+

@@ -52,48 +52,28 @@ imageAjout.addEventListener("click", () => {
 });
 
 
-const chevronDown = document.querySelector(".fa-chevron-down");
+
 const categoryInput = document.getElementById("category");
-let dropdown; // Pour stocker la liste déroulante
 
-// Clique sur l'icône chevron
-chevronDown.addEventListener("click", async () => {
-  // Si déjà ouvert, on ne refait pas
-  if (dropdown) {
-    dropdown.remove();
-    dropdown = null;
-    return;
-  }
-
+// Fonction pour récupérer et afficher les catégories
+async function loadCategories() {
+  
   try {
     const response = await fetch("http://localhost:5678/api/categories");
+    if (!response.ok) {
+      throw new Error("Erreur lors de la récupération des catégories");
+    }
     const categories = await response.json();
 
-    // Création du dropdown
-    dropdown = document.createElement("div");
-    dropdown.classList.add("dropdown-categories");
-
-    categories.forEach((cat) => {
-      const option = document.createElement("div");
-      option.classList.add("dropdown-option");
-      option.textContent = cat.name;
-      option.dataset.id = cat.id;
-
-      option.addEventListener("click", () => {
-        categoryInput.value = cat.name;
-        // Cache le menu après sélection
-        dropdown.remove();
-        dropdown = null;
-      });
-
-      dropdown.appendChild(option);
+    // Insérer les catégories dans la liste déroulante
+    categories.forEach((category) => {
+      const option = document.createElement("option");
+      option.value = category.id;
+      option.textContent = category.name;
+      categoryInput.appendChild(option);
     });
-
-    // Ajoute le dropdown sous l'input catégorie
-    const categoryContainer = document.querySelector(".div-category");
-    categoryContainer.appendChild(dropdown);
-
   } catch (error) {
     console.error("Erreur lors du chargement des catégories :", error);
   }
-});
+}
+loadCategories();

@@ -311,7 +311,7 @@ justify-content: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	
 
 
 }
@@ -327,6 +327,7 @@ justify-content: center;
 }
 
 #titleModal{
+	
 	color: black;
 	
 	font-size: 26px;
@@ -339,6 +340,8 @@ justify-content: center;
 	padding-bottom: 20px;
 	border-bottom: 1px solid grey;
 	display: flex;
+
+	height: 80%;
 	
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -384,6 +387,11 @@ justify-content: center;
 
 .addPictureButton{
 	padding: 6px 20px;
+}
+.disabled-btn{
+	background-color: grey !important;
+	cursor: not-allowed;
+	opacity: 0.6;
 }
 /** modle change for add picture**/
 
@@ -463,14 +471,24 @@ justify-content: center;
 	flex-direction: column;
 	gap: 8px;
 	margin: 15px;
+	box-sizing: border-box;
+	
 }
 
-#title,#category{
-	width: 100%;
+#title{
+	width: auto;
 
 	box-shadow: 0px 4px 14px 0px #00000017;
 
 	height: 30px;
+
+}
+.div-category select{
+	margin-top: 5px;
+	width: 100%;
+    box-shadow: 0px 4px 14px 0px #00000017;
+    height: 35px;
+	border: 2px solid black;
 
 }
 
@@ -484,15 +502,11 @@ justify-content: center;
 	cursor: pointer;
 }
 .div-category{
-	position: relative;
+	
+	width: 100%;
 }
 
-.fa-chevron-down{
-	position: absolute;
-	right: 10px;
-	top: 25px;
-	cursor: pointer;
-}
+
 
 .dropdown-categories{
 	display: flex;
@@ -511,7 +525,7 @@ justify-content: center;
 }
 
 #add-button{
-	background-color: #A7A7A7;
+	background-color: #1D6154;
 	padding: 10px;
 }
 

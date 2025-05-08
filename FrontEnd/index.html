@@ -73,7 +73,7 @@
           <aside id="modalModif" class="modal" style="display: none">
             <div class="modal-wrapper">
               
-              <h2 id="titleModal">Gallerie Photo</h2>
+              <h2 id="titleModal">Galerie Photo</h2>
               <span class="close"><i class="fa-solid fa-xmark"></i></span>
               <div id="works-modif"></div>
               <input
@@ -99,11 +99,13 @@
                 
                 <input type="text" name="title" id="title" required/>
                 <div class="div-category">
-                  <label for="list">Categorie </label>
-                  <input type="text" name="dropdown-categories" id="category" required/>
-                  <i class="fa-solid fa-chevron-down"></i>
+                  <label for="category">Catégorie</label>
+                  <select name="dropdown-categories" id="category" required>
+                    <option class="optn" value="">-- Sélectionner une catégorie --</option>
+                  </select>
+                  
                 </div>
-                <input  type="submit" value="Valider" id="add-button"/>
+                <input  type="submit" value="Valider"  id="add-button"/>
                 <p id="error-message"></p>
               </div>
             </div>
