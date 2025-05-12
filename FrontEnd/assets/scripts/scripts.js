@@ -1,7 +1,7 @@
 const addToBackend = document.getElementById("add-button")
 const errorMessage = document.getElementById("error-message")
 const titleInput = document.getElementById("title");
-const picture = document.getElementById("picture");
+const picture = document.getElementById("img-picture");
 
 
 
@@ -53,6 +53,8 @@ addToBackend.addEventListener("click", (e) => {
         errorMessage.style.color = "green";
         errorMessage.textContent = "Travail ajouté avec succès !";
         errorMessage.style.display = "block";
+
+        location.reload();
 
         
       } else {
