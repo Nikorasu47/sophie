@@ -42,31 +42,41 @@ addToBackend.addEventListener("click", (e) => {
     },
     body: formData,
   })
-    .then((response) => {
-      if (response.ok) {
-        // Reset des champs après succès
-        titleInput.value = "";
-        categoryInput.value = "";
-        openFile.value = "";
-        picture.innerHTML = `<i class="fa-solid fa-image"></i>`; // Remettre l'icône image
-
-        errorMessage.style.color = "green";
-        errorMessage.textContent = "Travail ajouté avec succès !";
-        errorMessage.style.display = "block";
-
-        location.reload();
-
-        
-      } else {
-        errorMessage.textContent = "Erreur lors de l'ajout du travail.";
-        errorMessage.style.display = "block";
-      }
-    })
-    .catch((error) => {
-      console.error("Erreur réseau :", error);
-      errorMessage.textContent = "Erreur réseau, veuillez réessayer.";
-      errorMessage.style.display = "block";
-    });
+  .then((response) => {
+    if (response.ok) {
+      return response.json(); // On récupère les infos du nouveau travail
+    } else {
+      throw new Error("Erreur lors de l'ajout du travail.");
+    }
+  })
+  .then((newWork) => {
+    //  Ajout dynamique à la galerie
+     const figure = document.createElement("figure");
+  
+    figure.innerHTML = `
+      <img src="${newWork.imageUrl}" alt="${newWork.title}">
+      <figcaption>${newWork.title}</figcaption>
+    `;
+  
+    gallery.appendChild(figure);
+  
+    //  Reset des champs
+    titleInput.value = "";
+    categoryInput.value = "";
+    openFile.value = "";
+    picture.innerHTML = `<i class="fa-solid fa-image"></i>`;
+  
+    errorMessage.style.color = "green";
+    errorMessage.textContent = "Travail ajouté avec succès !";
+    errorMessage.style.display = "block";
+  
+    
+  })
+  .catch((error) => {
+    console.error("Erreur réseau :", error);
+    errorMessage.textContent = error.message || "Erreur réseau, veuillez réessayer.";
+    errorMessage.style.display = "block";
+  });
 });
 
 
