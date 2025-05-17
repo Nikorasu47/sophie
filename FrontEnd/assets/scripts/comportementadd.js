@@ -4,8 +4,9 @@ const modalAcceuil = document.querySelector(".modal-wrapper");
 const returnModal = document.getElementById("returnModal")
 
 addPicture.addEventListener("click", () => {
-  modalAcceuil.style.display = "none";
   addWindow.style.display = "flex"
+  modalAcceuil.style.display = "none";
+  
 
 });
 

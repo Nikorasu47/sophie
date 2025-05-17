@@ -23,13 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const modifBtn = document.getElementById("modif");
-
+const modal = document.getElementById("modalModif");
 modifBtn.addEventListener("click", () => {
-  const modal = document.getElementById("modalModif");
+ 
   const closeModal = document.querySelector(".close");
   const worksListContainer = document.getElementById("works-modif");
 
-  modalModif.style.display = "flex";
+  modal.style.display = "flex";
+  addWindow.style.display = "none";
 
   closeModal.addEventListener("click", () => {
     modal.style.display = "none";
@@ -45,6 +46,7 @@ modifBtn.addEventListener("click", () => {
     .then((res) => res.json())
     .then((works) => {
       travauxExistant = works;
+      travauxTrier(travauxExistant)
       displayWorksInModal();
     });
 

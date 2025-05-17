@@ -73,7 +73,7 @@
           <aside id="modalModif" class="modal" style="display: none">
             <div class="modal-wrapper">
               
-              <h2 id="titleModal">Galerie Photo</h2>
+              <h2 class="titleModal">Galerie Photo</h2>
               <span class="close"><i class="fa-solid fa-xmark"></i></span>
               <div id="works-modif"></div>
               <input
@@ -82,16 +82,16 @@
                 value="Ajouter une photo"
               />
             </div>
-            <div id="add-picture">
+            <div id="add-picture" class="modal-wrapper">
               <i class="fa-solid fa-arrow-left" id="returnModal"></i>
-              <h2 id="titleModal">Ajout photo</h2>
+              <h2 class="titleModal">Ajout photo</h2>
               <div class="picture">
                 <img src="" alt="preview" style="display: none;" id="img-picture" >
                 <div class="div-pict">
                   <i class="fa-solid fa-image"></i>
                   <input type="file" style="display: none;" id="trigger-file" required/>
                   <input type="submit" value="+ Ajouter photo" id="trigger-button" />
-                  <p>jpg. png : 4mo max</p>
+                  <p>.jpg .png : 4mo max</p>
                 </div>
               </div>
               <div id = "labels">

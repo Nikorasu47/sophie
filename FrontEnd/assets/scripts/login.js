@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Réinitialise le message d'erreur
       messageElement.style.display = "none";
       messageElement.textContent = "";
+      messageElement.style.color = "red";
   
       // Vérification des champs vides
       if (!email && !password) {
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function afficherMessage(texte) {
       messageElement.textContent = texte;
       messageElement.style.display = "block";
-      messageElement.style.color = "red";
+      
     }
     
     

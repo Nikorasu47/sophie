@@ -63,17 +63,30 @@ addToBackend.addEventListener("click", (e) => {
     //  Reset des champs
     titleInput.value = "";
     categoryInput.value = "";
-    openFile.value = "";
-    picture.innerHTML = `<i class="fa-solid fa-image"></i>`;
+    openFile.value = "" ;
+    picture.src = "" ;
+    picture.alt = "";
+    picture.style.display = "none" ;
+    divPicture.style.display= "flex";
+    imageAjout.style.display ="none";
+
   
-    errorMessage.style.color = "green";
-    errorMessage.textContent = "Travail ajouté avec succès !";
-    errorMessage.style.display = "block";
+  
+
+    
+    modalAcceuil.style.display = "flex";
+    addWindow.style.display = "none";
+    modifBtn.click();
+    checkFormValidity();
+
+
+  
   
     
   })
   .catch((error) => {
     console.error("Erreur réseau :", error);
+    errorMessage.style.color = "red";
     errorMessage.textContent = error.message || "Erreur réseau, veuillez réessayer.";
     errorMessage.style.display = "block";
   });

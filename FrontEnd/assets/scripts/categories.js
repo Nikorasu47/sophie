@@ -11,7 +11,7 @@ fetch("http://localhost:5678/api/categories")
 // création des boutons de catégories
 function creeButtonsCategorie(categories) {
   const container = document.querySelector(".tri");
-
+  container.innerHTML = ""; // vide la galerie
   // Bouton "Tous"
   const allBtn = document.createElement("button");
   allBtn.classList.add("btn", "selected");
