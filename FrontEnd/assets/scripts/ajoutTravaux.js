@@ -1,12 +1,13 @@
-const addToBackend = document.getElementById("add-button")
-const errorMessage = document.getElementById("error-message")
+const addToBackend = document.getElementById("add-button");
+const errorMessage = document.getElementById("error-message");
 const titleInput = document.getElementById("title");
 const picture = document.getElementById("img-picture");
 
-
-
 function checkFormValidity() {
-  const isFormValid = titleInput.value.trim() !== "" && categoryInput.value !== "" && openFile.files.length > 0;
+  const isFormValid =
+    titleInput.value.trim() !== "" &&
+    categoryInput.value !== "" &&
+    openFile.files.length > 0;
   addToBackend.disabled = !isFormValid;
   addToBackend.classList.toggle("disabled-btn", !isFormValid);
 }
@@ -20,14 +21,12 @@ openFile.addEventListener("change", checkFormValidity);
 
 checkFormValidity();
 
-
 addToBackend.addEventListener("click", (e) => {
   e.preventDefault(); // évite le rechargement
-  
+
   errorMessage.style.display = "none";
   errorMessage.textContent = "";
 
- 
   // Crée la demande
   const formData = new FormData();
   formData.append("image", openFile.files[0]);
@@ -42,54 +41,44 @@ addToBackend.addEventListener("click", (e) => {
     },
     body: formData,
   })
-  .then((response) => {
-    if (response.ok) {
-      return response.json(); // On récupère les infos du nouveau travail
-    } else {
-      throw new Error("Erreur lors de l'ajout du travail.");
-    }
-  })
-  .then((newWork) => {
-    //  Ajout dynamique à la galerie
-     const figure = document.createElement("figure");
-  
-    figure.innerHTML = `
+    .then((response) => {
+      if (response.ok) {
+        return response.json(); // On récupère les infos du nouveau travail
+      } else {
+        throw new Error("Erreur lors de l'ajout du travail.");
+      }
+    })
+    .then((newWork) => {
+      //  Ajout dynamique à la galerie
+      const figure = document.createElement("figure");
+
+      figure.innerHTML = `
       <img src="${newWork.imageUrl}" alt="${newWork.title}">
       <figcaption>${newWork.title}</figcaption>
     `;
-  
-    gallery.appendChild(figure);
-  
-    //  Reset des champs
-    titleInput.value = "";
-    categoryInput.value = "";
-    openFile.value = "" ;
-    picture.src = "" ;
-    picture.alt = "";
-    picture.style.display = "none" ;
-    divPicture.style.display= "flex";
-    imageAjout.style.display ="none";
 
-  
-  
+      gallery.appendChild(figure);
 
-    
-    modalAcceuil.style.display = "flex";
-    addWindow.style.display = "none";
-    modifBtn.click();
-    checkFormValidity();
+      //  Reset des champs
+      titleInput.value = "";
+      categoryInput.value = "";
+      openFile.value = "";
+      picture.src = "";
+      picture.alt = "";
+      picture.style.display = "none";
+      divPicture.style.display = "flex";
+      imageAjout.style.display = "none";
 
-
-  
-  
-    
-  })
-  .catch((error) => {
-    console.error("Erreur réseau :", error);
-    errorMessage.style.color = "red";
-    errorMessage.textContent = error.message || "Erreur réseau, veuillez réessayer.";
-    errorMessage.style.display = "block";
-  });
+      modalAcceuil.style.display = "flex";
+      addWindow.style.display = "none";
+      modifBtn.click();
+      checkFormValidity();
+    })
+    .catch((error) => {
+      console.error("Erreur réseau :", error);
+      errorMessage.style.color = "red";
+      errorMessage.textContent =
+        error.message || "Erreur réseau, veuillez réessayer.";
+      errorMessage.style.display = "block";
+    });
 });
-
-

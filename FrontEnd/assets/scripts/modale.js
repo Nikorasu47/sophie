@@ -1,6 +1,5 @@
 const token = localStorage.getItem("token");
 document.addEventListener("DOMContentLoaded", () => {
- 
   const adminBanner = document.getElementById("admin-banner");
   const logLink = document.getElementById("log");
   const modif = document.getElementById("modif");
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
 const modifBtn = document.getElementById("modif");
 const modal = document.getElementById("modalModif");
 modifBtn.addEventListener("click", () => {
- 
   const closeModal = document.querySelector(".close");
   const worksListContainer = document.getElementById("works-modif");
 
@@ -46,7 +44,7 @@ modifBtn.addEventListener("click", () => {
     .then((res) => res.json())
     .then((works) => {
       travauxExistant = works;
-      travauxTrier(travauxExistant)
+      travauxTrier(travauxExistant);
       displayWorksInModal();
     });
 
